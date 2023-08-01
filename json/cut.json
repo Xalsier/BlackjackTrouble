@@ -2,27 +2,27 @@
     "Debug Cutscene": [
         {
             "text": "This is a test to make sure the visual novel works.",
-            "img": "../img/debug/C3.jpg",
+            "img": "./img/debug/C3.jpg",
             "bg": null
         },
         {
             "text": "If you are reading this, you were able to press continue.",
-            "img": "../img/debug/C3.jpg",
+            "img": "./img/debug/C3.jpg",
             "bg": null
         },
         {
             "text": "Make sure that the text that is displaying has proper spaces, and isn'tdisplayinglikethis.",
-            "img": "../img/debug/C3.jpg",
+            "img": "./img/debug/C3.jpg",
             "bg": null
         },
         {
             "text": "Check the css for the text-modal. Is it displaying how it should?",
-            "img": "../img/debug/C3.jpg",
-            "bg": "../img/debug/C1.jpg"
+            "img": "./img/debug/C3.jpg",
+            "bg": "./img/debug/C1.jpg"
         },
         {
             "text": "When this cutscene ends, does the text-modal get removed? It should.",
-            "img": "../img/debug/C3.jpg",
+            "img": "./img/debug/C3.jpg",
             "bg": null
         }
     ]
