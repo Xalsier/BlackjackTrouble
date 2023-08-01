@@ -16,7 +16,7 @@ let playerCardCount = 2, challengerCardCount = 2; // Combining similar variables
 let playerWins = 0, challengerWins = 0; // Combining similar variables
 let challengerAIs = {debug: debugAI};
 const generateFanOutPositions = count => Array.from({length: count}, (_, i) => ({x: (1 - i) * 30, y: 250, rotate: (1 - i) * 5}));
-const loadDeck = async () => deckData = await (await fetch('../json/shoe.json')).json();
+const loadDeck = async () => deckData = await (await fetch('./json/shoe.json')).json();
 const shuffleDeck = (deck) => {
     if (!Array.isArray(deck)) {
       console.error('Invalid input: deck should be an array');

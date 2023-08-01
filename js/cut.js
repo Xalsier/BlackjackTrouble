@@ -15,9 +15,9 @@ class CutsceneController {
     }
     async initCutscene() {
         try {
-            let response = await fetch('../json/cut.json');
+            let response = await fetch('./json/cut.json');
             this.originalCutsceneData = await response.json();
-            let condResponse = await fetch('../json/cut_var.json');
+            let condResponse = await fetch('./json/cut_var.json');
             this.conditionsData = await condResponse.json();
         } catch(error) {
             console.error("Failed to initialize cutscene:", error);

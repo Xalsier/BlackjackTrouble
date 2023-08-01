@@ -1,6 +1,6 @@
 let gameConditions;
 
-fetch('../json/cond.json')
+fetch('./json/cond.json')
     .then(response => response.json())
     .then(data => {
         gameConditions = data;
