@@ -17,7 +17,7 @@ function updateChallengerData() {
     if (!currentChallenger) return;
 
     // Fetch the data from assign.json
-    fetch('./json/assign.json')
+    fetch('assign.json')
         .then(response => response.json())
         .then(data => {
             const challengerData = data[currentChallenger];

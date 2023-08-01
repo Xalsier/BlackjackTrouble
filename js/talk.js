@@ -13,7 +13,7 @@ document.getElementById('talkButton').addEventListener('click', () => {
     sessionStorage.setItem('talkEnd', 'false'); // Set talkEnd to 'false' at the start of a new conversation
 
     // Fetch the dialog data from talk.json
-    fetch('./json/talk.json') // Updated file path
+    fetch('talk.json') // Updated file path
         .then(response => response.json())
         .then(data => {
             // Get the player and challenger dialogs
