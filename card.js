@@ -1,5 +1,5 @@
-import debugAI from './challenger/debug.js';
-import adversarialAI from './adversarial.js'; // Added this line to import adversarialAI
+import debugAI from 'debug.js';
+import adversarialAI from 'adversarial.js'; // Added this line to import adversarialAI
 let gameActive = false;
 let playerStand = false;
 let opponentButtonClicked = false;
