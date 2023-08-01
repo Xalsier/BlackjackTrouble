@@ -1,5 +1,3 @@
-import debugAI from './debug.js';
-import adversarialAI from './adversarial.js'; // Added this line to import adversarialAI
 let gameActive = false;
 let playerStand = false;
 let opponentButtonClicked = false;
@@ -470,3 +468,212 @@ document.querySelectorAll('.opponent-button').forEach((button) => {
         startGame();
     });
 });
+function debugAI(challengerScore, playerStand, round, bestOf, playerWins, challengerWins) {
+    console.log('処理を開始します... (Starting process...)');
+    const randomFloat = Math.random();
+    const talkChance = 0.5;
+    const thinkingDelay = 5000;
+    const checkIntervalDelay = 1000;
+    console.log(`Random float: ${randomFloat}`);
+    let checkInterval;
+    const startInterval = (resolve, reject) => {
+        if (!sessionStorage) {
+            console.error('エラーが発生しました: sessionStorageは利用できません (Error occurred: sessionStorage is not available)');
+            reject(new Error('sessionStorageは利用できません (sessionStorage is not available)'));
+            return;
+        }
+        checkInterval = setInterval(() => {
+            if (sessionStorage.getItem('talkEnd') === 'true') {
+                clearInterval(checkInterval);
+                let playerScore;
+                try {
+                    const playerScoreElement = document.querySelector("#player-score");
+                    if (!playerScoreElement) {
+                        throw new Error('プレーヤーのスコア要素が見つかりませんでした (Player\'s score element not found)');
+                    }
+                    playerScore = parseInt(playerScoreElement.textContent);
+                    if (isNaN(playerScore)) {
+                        throw new Error('プレーヤーのスコアが数値ではありません (Player\'s score is not a number)');
+                    }
+                    console.log('考えています... プレーヤーのスコアは何ですか？ (Thinking... What\'s the player\'s score?)');
+                    setTimeout(() => {
+                        console.log(`Thinking... The player's score is ${playerScore}.`);
+                        if (playerStand && playerScore <= 17) {
+                            console.log('Thinking... The player has already stood and their score is 17 or less. I should stand to secure the win.');
+                            resolve('stand');
+                        } else if (round === bestOf - 1) {
+                            if (challengerWins > playerWins) {
+                                console.log('Thinking... I can win or lose this. I\'ll still win. I should stand.');
+                                resolve('stand');
+                            } else if (challengerScore > 21) {
+                                console.log('Thinking... I busted... I should stand.');
+                                resolve('stand');
+                            } else {
+                                console.log('Thinking... My score is less than 17. Deciding to hit.');
+                                resolve('hit');
+                            }
+                        } else {
+                            if (playerScore > 21) {
+                                console.log('Thinking... The player is about to bust. I should stand.');
+                                resolve('stand');
+                            } else if (challengerScore > 21) {
+                                console.log('Thinking... I busted... I should stand.');
+                                resolve('stand');
+                            } else {
+                                const riskFloat = Math.random();
+                                if (challengerScore < 17 || (challengerScore <= 19 && playerScore > 19) || riskFloat < 0.4) {
+                                    console.log('Thinking... My score is low or the player has an edge or I\'m feeling lucky. Deciding to hit.');
+                                    resolve('hit');
+                                } else {
+                                    console.log('Thinking... My score is decent and the player doesn\'t have a big edge and I\'m not feeling lucky. Deciding to stand.');
+                                    resolve('stand');
+                                }
+                            }
+                        }
+                    }, thinkingDelay);
+                } catch (error) {
+                    console.error('エラーが発生しました: ', error);
+                    reject(error);
+                }
+            }
+        }, checkIntervalDelay);
+    };
+    if (randomFloat < talkChance) {
+        console.log('会話を開始します (Starting conversation)');
+        const talkButton = document.getElementById('talkButton');
+        if (!talkButton) {
+            console.error('エラーが発生しました: トークボタンが見つかりませんでした (Error occurred: Talk button not found)');
+            return;
+        }
+        talkButton.click();
+    } else {
+        console.log('会話を開始しません (Not starting conversation)');
+    }
+    console.log(`チャレンジャーのスコア: ${challengerScore} (Challenger score: ${challengerScore})`);
+    return new Promise((resolve, reject) => {
+        if (randomFloat < talkChance) {
+            startInterval(resolve, reject);
+            setTimeout(() => {
+                if (sessionStorage.getItem('talkEnd') !== 'true') {
+                    console.warn('警告: 会話が長すぎます。チェックインターバルをクリアします (Warning: Conversation is too long. Clearing check interval)');
+                    clearInterval(checkInterval);
+                    reject(new Error('会話が長すぎます (Conversation is too long)'));
+                }
+            }, 30000);  // Wait for 30 seconds for the conversation to end before clearing the interval and rejecting the promise
+        } else {
+            resolve(challengerScore < 17 ? 'hit' : 'stand');
+        }
+    });
+}
+function adversarialAI() {
+    return new Promise((resolve, reject) => {
+        try {
+            const challengerDistractionTextMap = {
+                'debug': ['デバッグ', 'エラー', '修正'],
+                'default': ['不明な', '???', '!!!']
+            }
+
+            let challenger = sessionStorage.getItem('challenger');
+            let distractionTexts = challengerDistractionTextMap[challenger] || challengerDistractionTextMap['default'];
+
+            let modal = document.createElement('div');
+            modal.id = 'adversarial-modal';
+            modal.style.overflow = 'hidden'; // Add this line to hide overflow
+            document.body.appendChild(modal);
+
+            let focusText = document.createElement('p');
+            focusText.textContent = "Focus.";
+            modal.appendChild(focusText);
+
+            let instructionText = document.createElement('p');
+            instructionText.textContent = "Tap to ignore distractions.";
+            modal.appendChild(instructionText);
+
+            let progressBarContainer = document.createElement('div');
+            progressBarContainer.id = 'progress-bar-container';
+            modal.appendChild(progressBarContainer);
+
+            let progressBar = document.createElement('div');
+            progressBar.id = 'adversarial-progress-bar';
+            progressBarContainer.appendChild(progressBar);
+
+            let afterImageBar = document.createElement('div');
+            afterImageBar.id = 'after-image-bar';
+            progressBarContainer.appendChild(afterImageBar);
+
+            let spacebar = document.createElement('div');
+            spacebar.id = 'spacebar';
+            modal.appendChild(spacebar);
+
+            let progress = 50;
+            progressBar.style.width = `${progress}%`;
+
+            function setUpDistractionAnimation(distraction) {
+                let angle = Math.random() * 2 * Math.PI;
+                let endX = 100 * Math.cos(angle);
+                let endY = 100 * Math.sin(angle);
+                distraction.style.setProperty('--x', `${endX}vw`);
+                distraction.style.setProperty('--y', `${endY}vh`);
+                distraction.style.animation = `fly 5s linear infinite`;
+            }
+
+            for (let i = 0; i < 10; i++) {
+                let distraction = document.createElement('p');
+                distraction.textContent = distractionTexts[Math.floor(Math.random() * distractionTexts.length)];
+                distraction.style.position = 'absolute';
+                distraction.style.left = '50%';
+                distraction.style.top = '50%';
+                distraction.style.color = 'white';
+                distraction.style.opacity = progress / 100;
+                distraction.style.transform = 'translate(-50%, -50%)';
+                distraction.addEventListener('animationiteration', () => {
+                    distraction.style.left = '50%';
+                    distraction.style.top = '50%';
+                    distraction.style.animation = '';
+                    setUpDistractionAnimation(distraction);
+                });
+                setUpDistractionAnimation(distraction);
+                modal.appendChild(distraction);
+            }
+
+            const PROGRESS_INCREASE = 7;
+            const PROGRESS_INTERVAL_MS = 600;
+            const CLICK_REDUCTION = 5;
+
+            let progressIncrease = setInterval(() => {
+                progress += PROGRESS_INCREASE;
+                progressBar.style.width = `${progress}%`;
+                afterImageBar.style.width = `${progress}%`;
+                if (progress >= 100) {
+                    clearInterval(progressIncrease);
+                    document.removeEventListener('click', clickListener);
+                    document.body.removeChild(modal);
+                    resolve(true);
+                }
+            }, PROGRESS_INTERVAL_MS);
+
+            let clickListener = () => {
+                progress -= CLICK_REDUCTION;
+                progressBar.style.width = `${progress}%`;
+                if (progress <= 0) {
+                    clearInterval(progressIncrease);
+                    document.removeEventListener('click', clickListener);
+                    if (modal.parentNode) {
+                        document.body.removeChild(modal);
+                    }
+                    resolve(false);
+                }
+                spacebar.style.transform = 'translateY(3px)'; // Move the spacebar down
+                spacebar.style.backgroundColor = 'lightgray';  // Change the color
+                setTimeout(() => {
+                    spacebar.style.transform = 'none';         // Move the spacebar back up
+                    spacebar.style.backgroundColor = '';       // Reset the color
+                }, 200);
+            };
+            document.addEventListener('click', clickListener);
+        } catch (エラー) { // Error
+            console.error('エラー発生 (An error occurred) in the adversarialAI function: ', エラー);
+            reject(エラー);
+        }
+    });
+}
