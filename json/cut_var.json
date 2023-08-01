@@ -1,0 +1,6 @@
+[
+    {
+        "cutscene": "Debug Cutscene",
+        "variables": ["A009", "debug-button", "A001", "A002"]
+    }
+]

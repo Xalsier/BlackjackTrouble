@@ -1,0 +1,18 @@
+{
+    "debug": {
+        "updates": {
+            "challenger-profile": {
+                "property": "src",
+                "value": "../img/debug/C3.jpg"
+            },
+            "right-column-h2": {
+                "property": "innerText",
+                "value": "Debug"
+            },
+            "chal-peak": {
+                "property": "src",
+                "value": "../img/debug/C3.jpg"
+            }
+        }
+    }
+}

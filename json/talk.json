@@ -1,0 +1,24 @@
+{
+    "Player": {
+        "debug": {
+            "challenger": "debug",
+            "dialogs": [
+                { "id": 1, "text": "Debug 1 H", "img": "../img/debug/C1.jpg" },
+                { "id": 2, "text": "Debug 2 H.", "img": "../img/debug/C1.jpg" },
+                { "id": 3, "text": "Debug 3 H.. ", "img": "../img/debug/C1.jpg" },
+                { "id": 4, "text": "Debug 4 H...", "img": "../img/debug/C1.jpg" }
+            ]
+        }
+    },
+    "Challenger": {
+        "debug": {
+            "player": "debug",
+            "dialogs": [
+                { "id": 1, "text": "Debug 1 D", "img": "../img/debug/C3.jpg" },
+                { "id": 2, "text": "Debug 2 D.", "img": "../img/debug/C3.jpg" },
+                { "id": 3, "text": "Debug 3 D..", "img": "../img/debug/C3.jpg" },
+                { "id": 4, "text": "Debug 4 D...", "img": "../img/debug/C3.jpg" }
+            ]
+        }
+    }
+}

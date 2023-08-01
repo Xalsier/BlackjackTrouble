@@ -1,0 +1,69 @@
+.text-modal {
+    position: fixed;
+    bottom: 5%;
+    width: 50%;
+    left: 25%;
+    background: rgb(78, 78, 78);
+    padding: 1em;
+    color: white; /* Changed to white */
+    text-shadow: 0px 0px 10px #ffffff; /* Increased glow size */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+    border-radius: 10px;
+    z-index: 1000;
+  }
+  
+  #continue-button, #skip-button, #back-button {
+    background: transparent;
+    border: none;
+    color: white; /* Changed to white */
+    text-shadow: 0px 0px 10px #ffffff; /* Increased glow size */
+    cursor: pointer; 
+  }
+
+#modal-img {
+    float: left; 
+    margin-right: 1em;
+    width: 100px; 
+    height: 100px;
+  
+    border-radius: 10px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+  }
+
+#text-content {
+    overflow: auto;
+    margin-right: 1em; /* Adds some space on the right to prevent cropping of the glow */
+}
+
+#continue-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px; 
+  }
+  
+  #skip-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  #back-button {
+    position: absolute; 
+    bottom: 10px;
+    margin-right: 1em; /* Adds some space on the right to prevent cropping of the glow */
+  }
+
+#cutscene-div {
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

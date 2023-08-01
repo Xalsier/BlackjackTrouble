@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../css/modal.css">
+    <link rel="stylesheet" type="text/css" href="../css/cards.css">
+    <link rel="stylesheet" type="text/css" href="../css/count.css">
+    <link rel="stylesheet" type="text/css" href="../css/adversarial.css">
+</head>
+<body>
+    <div class="main-menu" id="main-menu">     
+        <h1 class="game-title">Steamy Aces</h1>
+        <div class="button-grid">
+            <button class="menu-button">Start</button>
+            <button id="cutscenes-button" class="menu-button">Cutscenes</button>
+            <button id="achievements-button" class="menu-button">Achievements</button>
+            <button class="menu-button" id="cheats-button">Cheats</button>
+        </div>
+    </div>
+    <div class="text-modal" id="text-modal" style="display: none;">
+        <img id="modal-img" src=""> <!-- Placeholder for character image -->
+        <div id="text-content"><p id="modal-text">Placeholder text</p></div>
+        <button id="continue-button">Next</button>
+        <button id="skip-button">&#9658; &#9658;</button>
+        <button id="back-button">Back</button>
+    </div>
+    <div class="opponent-select" id="opponent-select">
+        <div class="opponent-challengers">
+            <button class="menu-button opponent-button" id="debug-button">Challenge Debug</button>
+        </div>
+        <button class="menu-button" id="opponent-return-button">Return</button>
+    </div>   
+    <div class="achievements-menu" id="achievements-menu">
+        <button class="menu-button" id="achievements-return-button">Return</button>
+    </div>    
+    <div class="cutscene-replay" id="cutscene-replay" style="display: none;">
+        <div class="button-grid-3">
+            <button id="A001" class="menu-button hidden">Debug Win Cutscene</button>
+            <button id="A002" class="menu-button hidden">Debug Loss Cutscene</button>
+            <button id="A003" class="menu-button hidden">Zsasz Win Cutscene</button>
+            <button id="A004" class="menu-button hidden">Zsasz Loss Cutscene</button>
+            <button id="A005" class="menu-button hidden">Jacques Win Cutscene</button>
+            <button id="A006" class="menu-button hidden">Jacques Loss Cutscene</button>
+            <button id="A007" class="menu-button hidden">Killian Win Cutscene</button>
+            <button id="A008" class="menu-button hidden">Killian Loss Cutscene</button>
+            <button id="A009" class="menu-button hidden">Debug Intro Cutscene</button>
+            <button id="A010" class="menu-button hidden">Zsasz Intro Cutscene</button>
+            <button id="A011" class="menu-button hidden">Jacques Intro Cutscene</button>
+            <button id="A012" class="menu-button hidden">Killian Intro Cutscene</button>
+        </div>
+        <button id="cutscene-replay-return-button" class="menu-button">Return</button>
+    </div>
+    <div class="blackjack-div" id="blackjack-div" style="display: none;">
+        <div class="house-table">
+            <div class="challenger-cards">
+            </div>
+            <div class="center-stack"></div>
+            <div class="your-cards"></div>
+        </div>
+        <button class="blackjack-button" id="hitButton">Hit</button>
+        <button class="blackjack-button" id="standButton">Stand</button>
+        <button class="blackjack-button hidden" id="talkButton">Talk</button>
+        <button class="blackjack-button hidden" id="stopButton">Stop</button>
+        <h2 id="player-score">0</h2>  
+        <h2 id="challenger-score">0</h2>
+        <img src="../img/debug/C3.jpg" id="chal-peak">
+    </div>
+    <div id="gameEnd">
+        <p id="endState">Heather won!</p>
+        <p id="endRatio">0 : 0</p>
+    </div>    
+    <div class="cheats-menu" id="cheats-menu">
+        <button class="menu-button" id="return-button">Return</button>
+        <div class="button-grid-2">
+            <label><input type="checkbox" id="unlock-all-cutscenes"> Unlock All Cutscenes</label>
+            <label><input type="checkbox" id="unlock-hard-mode"> Unlock All Challengers</label>
+            <label><input type="checkbox" id="unlock-debug-mode"> Unlock Debug Mode</label>
+        </div>
+    </div>
+    <div class="fade-out" id="fade-out"></div>
+    <div id="cutscene-div"></div>
+    <script src="../js/trans.js"></script>
+    <script src="../js/game.js"></script>
+    <script src="../js/cut.js"></script>
+    <script src="../js/card.js" type="module"></script>
+    <script src="../js/talk.js"></script>
+    <script src="../js/assign.js"></script>
+</body>
+</html>

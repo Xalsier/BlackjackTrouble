@@ -1,0 +1,223 @@
+body {
+    background: white;
+    overflow: hidden;
+}
+
+.main-menu,
+.cheats-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cheats-menu {
+    display: none;
+}
+
+.game-title {
+    font-size: 4em;
+    transform: rotate(-5deg);
+    user-select: none; /* Add this line */
+    cursor: pointer; /* Add this line */
+}
+
+.game-title-flipped {
+    transform: rotate(5deg);
+}
+
+
+h2 {
+    translate: 0px -40px;
+}
+
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 50%;
+}
+
+.button-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+
+.menu-button {
+    font-size: 1.5em;
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.menu-button:hover {
+    transform: scale(1.1);
+}
+
+.fade-out {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    opacity: 0;
+    pointer-events: none; /* Add this line */
+    transition: opacity 0.5s;
+}
+
+.fade-out.active {
+    opacity: 1;
+    pointer-events: auto; /* Add this line */
+}
+
+.hidden {
+    display: none;
+}
+
+.locked {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 0.8em;
+}
+
+.joker-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.joker-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.joker-card {
+    width: 50px; /* adjust the size as needed */
+    height: auto;
+    transition: filter 1s linear;
+    margin: 0 10px; /* 10px gap between cards, adjust if needed */
+    animation: hover 2s infinite ease-in-out;
+}
+
+.joker-card:nth-child(1) { animation-delay: 0.2s; }
+.joker-card:nth-child(2) { animation-delay: 0.4s; }
+.joker-card:nth-child(3) { animation-delay: 0.6s; }
+.joker-card:nth-child(4) { animation-delay: 0.8s; }
+.joker-card:nth-child(5) { animation-delay: 1.0s; }
+
+@keyframes hover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); } /* adjust the vertical hover as needed */
+}
+
+.achievements-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#opponent-select {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.opponent-challengers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cutscene-replay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100%; /* Ensure the container takes the full height of the parent */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.button-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three-column grid */
+    gap: 20px;
+    justify-items: center; /* Center horizontally within the grid */
+}
+
+
+.menu-button {
+    margin: 10px 0;
+}
+
+#cutscene-replay-return-button {
+    position: absolute;
+    bottom: 10px; /* Set the distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+
+
+.menu-button {
+    margin: 10px 0;
+}
+
+#opponent-return-button, #achievements-return-button, #return-button, #cutscene-replay-return-button {
+    position: absolute;
+    bottom: 10px;
+}
+
+
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.achievement-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.achievement-row.locked {
+    opacity: 0.5;
+}
+
+.achievement-card {
+    width: 50px;
+    height: auto;
+}
+

@@ -1,0 +1,283 @@
+/* Styles for the blackjack game room layout */
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .blackjack-div {
+    display: flex;
+    justify-content: center; /* 中央寄せ (centering) horizontally */
+    align-items: center; /* 中央寄せ (centering) vertically */
+    height: 100vh; /* 高さ (height) to fill the viewport */
+    width: 100vw; /* 幅 (width) to fill the viewport */
+    background-color: black; /* 背景色 (background color) */
+  }
+
+  
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    left: 0; /* Place the left column on the far left */
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index: 10;
+  }
+  
+  .left-column img {
+    width: 100px; /* Set the desired width for the challenger profile image */
+    height: 100px; /* Set the desired height for the challenger profile image */
+    object-fit: cover; /* Ensure the image is fully visible without stretching */
+  }
+  
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    right: 0; /* Place the right column on the far right */
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index: 10;
+  }
+  
+  .house-table {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 50%;
+    background-color: rgb(154, 154, 154);
+    padding: 20px;
+    width: 1200px; /* Set a fixed width for the table */
+    height: 1200px;
+    overflow: hidden; /* Hide any overflow content (e.g., challenger cards) that exceeds the circle */
+    z-index: 5;
+    /* Add 3D effect */
+    transform: perspective(400px) rotateX(70deg) translateY(0px);
+    transform-style: preserve-3d;
+  }
+  
+  
+  
+  .center-stack {
+    position: absolute; 
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); /* This will move the stack back by 50% of its own width and height, effectively centering it */
+    display: flex;
+    justify-content: center; /* To center the card horizontally */
+    align-items: center; /* To center the card vertically */
+    gap: 2px; /* Sets the gap between the cards */
+    z-index: 2; /* Set z-index to ensure center cards appear above the others */
+}
+
+  
+/* Styles for the blackjack game room layout */
+/* ... (previous CSS rules remain unchanged) ... */
+
+/* Styles for the blackjack game room layout */
+/* ... (previous CSS rules remain unchanged) ... */
+
+.blackjack-button {
+    padding: 10px 20px; /* Adjust as needed */
+    background-color: #000000; /* Adjust as needed */
+    color: #ffffff; /* Adjust as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust as needed */
+    z-index: 10;
+}
+
+
+.challenger-cards {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 10px; /* Adjust as needed to place the cards at the top of the circle */
+    z-index: 3; /* Set a high z-index to ensure the cards appear on top */
+    gap: 5px; /* Sets the gap between the cards */
+    margin-top: 150px;
+    rotate: 180deg;
+}
+
+.your-cards {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 10px; /* Adjust as needed to place the cards at the bottom of the circle */
+    z-index: 3; /* Set a high z-index to ensure the cards appear on top */
+    gap: 5px; /* Sets the gap between the cards */
+    margin-bottom: 150px;
+}
+
+#gameEnd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* Add this line */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  color: rgb(255, 255, 255);
+  font-size: 5em;
+  transform: scale(0);
+  visibility: hidden;
+  text-align: center;
+  text-shadow: 0 0 10px #ffffff,
+               0 0 20px #ffffff,
+               0 0 30px #ffffff,
+               0 0 40px #ffffff;
+}
+
+#gameEnd p {
+  margin: 0.5em 0;
+}
+
+
+
+@keyframes zoomIn {
+  from {
+      transform: scale(0);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(0);
+  }
+}
+
+
+
+.card {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+
+  /* Add 3D effect */
+  transform: perspective(600px) rotateY(0deg) translateZ(50px);
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+
+#player-profile,
+#challenger-profile,
+#your-stake-image,
+#challenger-stake-image {
+  width: 100px; /* Set the desired width for the images */
+  height: 100px; /* Set the desired height for the images */
+  object-fit: cover; /* Ensure the images are fully visible without stretching */
+}
+
+#player-profile, #challenger-profile {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+#chal-peak {
+  z-index: 0;
+  position: absolute;
+  scale: 0.5;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  translate: 0px -250px;
+}
+
+#player-score {
+  z-index: 20;
+  color: white;
+  scale: 1.2;
+  position: absolute;
+  translate: -300px -200px;
+  text-shadow: 0 0 10px #ffffff,
+  0 0 20px #ffffff,
+  0 0 30px #ffffff,
+  0 0 40px #ffffff;
+}
+
+#hitButton {
+  transform: translate(400px, 0px);
+  user-select: none;
+}
+
+#standButton {
+  transform: translate(-400px, 0px);
+  user-select: none;
+}
+
+
+#challenger-score {
+  z-index: 20;
+  color: white;
+  scale: 1.2;
+  position: absolute;
+  translate: 300px -200px;
+  text-shadow: 0 0 10px #ffffff,
+  0 0 20px #ffffff,
+  0 0 30px #ffffff,
+  0 0 40px #ffffff;
+}
+
+/* Fanned out cards for challenger */
+#challenger-card-1 { transform: translate(150px, 20px) rotate(25deg); z-index: 1; }
+#challenger-card-2 { transform: translate(120px, 16px) rotate(20deg); z-index: 2; }
+#challenger-card-3 { transform: translate(90px, 12px) rotate(15deg); z-index: 3; }
+#challenger-card-4 { transform: translate(60px, 8px) rotate(10deg); z-index: 4; }
+#challenger-card-5 { transform: translate(30px, 4px) rotate(5deg); z-index: 5; }
+#challenger-card-6 { transform: translate(0, 0) rotate(0deg); z-index: 6; }
+#challenger-card-7 { transform: translate(-30px, 4px) rotate(-5deg); z-index: 7; }
+#challenger-card-8 { transform: translate(-60px, 8px) rotate(-10deg); z-index: 8; }
+#challenger-card-9 { transform: translate(-90px, 12px) rotate(-15deg); z-index: 9; }
+#challenger-card-10 { transform: translate(-120px, 16px) rotate(-20deg); z-index: 10; }
+#challenger-card-11 { transform: translate(-150px, 20px) rotate(-25deg); z-index: 11; }
+
+/* Fanned out cards for player */
+#your-card-1 { transform: translate(150px, 20px) rotate(25deg); z-index: 1; }
+#your-card-2 { transform: translate(120px, 16px) rotate(20deg); z-index: 2; }
+#your-card-3 { transform: translate(90px, 12px) rotate(15deg); z-index: 3; }
+#your-card-4 { transform: translate(60px, 8px) rotate(10deg); z-index: 4; }
+#your-card-5 { transform: translate(30px, 4px) rotate(5deg); z-index: 5; }
+#your-card-6 { transform: translate(0, 0) rotate(0deg); z-index: 6; }
+#your-card-7 { transform: translate(-30px, 4px) rotate(-5deg); z-index: 7; }
+#your-card-8 { transform: translate(-60px, 8px) rotate(-10deg); z-index: 8; }
+#your-card-9 { transform: translate(-90px, 12px) rotate(-15deg); z-index: 9; }
+#your-card-10 { transform: translate(-120px, 16px) rotate(-20deg); z-index: 10; }
+#your-card-11 { transform: translate(-150px, 20px) rotate(-25deg); z-index: 11; }
+
+.card {
+  background-size: contain;  /* ensures that the image is scaled so as to fit within the given area, while maintaining its aspect-ratio */
+  background-repeat: no-repeat; /* prevents the image from repeating */
+  background-position: center; /* ensures that the image is centered */
+  width: 100px; /* adjust width and height to desired card size */
+  height: 140px;
+  position: absolute;
+  scale: 1.2;
+}
