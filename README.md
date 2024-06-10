@@ -15,3 +15,7 @@ It's mostly broken. I may return to this at some point.
 Currently, 1-3 minutes per challenger
 
 Goal: Extend it to be longer, with dialog, animations, etc.
+
+## Credits
+
+Artist for the Cards: [@digital_xrain](https://www.fiverr.com/digital_xrain) on Fiverr, 2022.
