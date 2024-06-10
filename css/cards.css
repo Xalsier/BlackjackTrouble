@@ -71,23 +71,20 @@ body {
   
   
   .center-stack {
-    position: absolute; 
-    top: 40%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); /* This will move the stack back by 50% of its own width and height, effectively centering it */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    justify-content: center; /* To center the card horizontally */
-    align-items: center; /* To center the card vertically */
-    gap: 2px; /* Sets the gap between the cards */
-    z-index: 2; /* Set z-index to ensure center cards appear above the others */
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    z-index: 2;
+    background-image: url('../img/deck/bak/Dark_Cards-52.svg'); /* Adding the background image */
+    background-size: cover; /* This will cover the entire div regardless of its size */
+    background-position: center; /* This will center the background image in the div */
 }
 
-  
-/* Styles for the blackjack game room layout */
-/* ... (previous CSS rules remain unchanged) ... */
-
-/* Styles for the blackjack game room layout */
-/* ... (previous CSS rules remain unchanged) ... */
 
 .blackjack-button {
     padding: 10px 20px; /* Adjust as needed */
@@ -224,12 +221,14 @@ body {
 }
 
 #hitButton {
-  transform: translate(400px, 0px);
+  transform: translate(300px, 0px);
+  z-index: 5;
   user-select: none;
 }
 
 #standButton {
-  transform: translate(-400px, 0px);
+  transform: translate(-300px, 0px);
+  z-index: 5;
   user-select: none;
 }
 
