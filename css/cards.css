@@ -51,21 +51,20 @@ body {
   
   .house-table {
     position: fixed;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    translate: -300px 100px;
     border-radius: 50%;
-    background-color: rgb(154, 154, 154);
+    scale:0.8;
+    background-color: rgba(154, 154, 154, 0);
     padding: 20px;
     width: 1200px; /* Set a fixed width for the table */
     height: 1200px;
     overflow: hidden; /* Hide any overflow content (e.g., challenger cards) that exceeds the circle */
     z-index: 5;
     /* Add 3D effect */
-    transform: perspective(400px) rotateX(70deg) translateY(0px);
-    transform-style: preserve-3d;
   }
   
   
@@ -79,10 +78,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 2px;
-    z-index: 2;
-    background-image: url('../img/deck/bak/Dark_Cards-52.svg'); /* Adding the background image */
-    background-size: cover; /* This will cover the entire div regardless of its size */
-    background-position: center; /* This will center the background image in the div */
+    z-index: 500;
 }
 
 
@@ -103,7 +99,7 @@ body {
     flex-direction: row;
     position: relative;
     top: 10px; /* Adjust as needed to place the cards at the top of the circle */
-    z-index: 3; /* Set a high z-index to ensure the cards appear on top */
+    z-index: 500; /* Set a high z-index to ensure the cards appear on top */
     gap: 5px; /* Sets the gap between the cards */
     margin-top: 150px;
     rotate: 180deg;
@@ -114,7 +110,7 @@ body {
     flex-direction: row;
     position: relative;
     bottom: 10px; /* Adjust as needed to place the cards at the bottom of the circle */
-    z-index: 3; /* Set a high z-index to ensure the cards appear on top */
+    z-index: 500; /* Set a high z-index to ensure the cards appear on top */
     gap: 5px; /* Sets the gap between the cards */
     margin-bottom: 150px;
 }
@@ -202,47 +198,44 @@ body {
 #chal-peak {
   z-index: 0;
   position: absolute;
-  scale: 0.5;
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  translate: 0px -250px;
+  scale: 1;
 }
 
 #player-score {
   z-index: 20;
-  color: white;
+  color: rgb(0, 0, 0);
   scale: 1.2;
   position: absolute;
-  translate: -300px -200px;
-  text-shadow: 0 0 10px #ffffff,
-  0 0 20px #ffffff,
-  0 0 30px #ffffff,
-  0 0 40px #ffffff;
+  translate: 300px -400px;
+  text-shadow: 0 0 10px #000000,
+  0 0 20px #000000,
+  0 0 30px rgb(0, 0, 0),
+  0 0 40px #000000;
 }
 
 #hitButton {
   transform: translate(300px, 0px);
-  z-index: 5;
+  z-index: 500;
   user-select: none;
 }
 
 #standButton {
-  transform: translate(-300px, 0px);
-  z-index: 5;
+  transform: translate(300px, 150px);
+  z-index: 500;
   user-select: none;
 }
 
 
 #challenger-score {
   z-index: 20;
-  color: white;
+  color: rgb(0, 0, 0);
   scale: 1.2;
   position: absolute;
   translate: 300px -200px;
-  text-shadow: 0 0 10px #ffffff,
-  0 0 20px #ffffff,
-  0 0 30px #ffffff,
-  0 0 40px #ffffff;
+  text-shadow: 0 0 10px #000000,
+  0 0 20px #000000,
+  0 0 30px #000000,
+  0 0 40px #000000;
 }
 
 /* Fanned out cards for challenger */

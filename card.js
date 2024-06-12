@@ -322,6 +322,16 @@ function fanOutCards() {
 }
 function setCardImagesAndScores() {
     try {
+        const playerScoreElement = document.querySelector("#player-score");
+        const challengerScoreElement = document.querySelector("#challenger-score");
+
+        if (!playerScoreElement || !challengerScoreElement) {
+            throw new Error("Score elements not found");
+        }
+
+        let playerScore = 0;
+        let challengerScore = 0;
+
         const cards = deckData.slice(0, 4).map((card, index) => {
             let cardElement = deckCenterStack[index];
             cardElement.style.backgroundImage = `url(${card.url})`;
@@ -334,31 +344,49 @@ function setCardImagesAndScores() {
 
             if (index < 2) {
                 challengerCards.push(cardElement);
-                let score = parseInt(document.querySelector("#challenger-score").textContent);
-                if (isNaN(score)) throw new Error("Invalid challenger score: NaN");
-                score += card.value;
-                document.querySelector("#challenger-score").textContent = score;
+                challengerScore += card.value;
             } else {
                 playerCards.push(cardElement);
-                let score = parseInt(document.querySelector("#player-score").textContent);
-                if (isNaN(score)) throw new Error("Invalid player score: NaN");
-                score += card.value;
-                document.querySelector("#player-score").textContent = score;
+                playerScore += card.value;
             }
             return card.value;
         });
-        const [challengerScore1, challengerScore2, playerScore1, playerScore2] = cards;
+
+        playerScoreElement.textContent = playerScore; // Update player score element
+        challengerScoreElement.textContent = `${playerScore} vs ${challengerScore}`; // Update challenger score element
+
     } catch (err) {
         console.error(`Error setting scores: ${err}`);
     }
 }
 
 function updateScore(value, isPlayer) {
-    const scoreElement = document.querySelector(isPlayer ? "#player-score" : "#challenger-score");
-    const score = parseInt(scoreElement.textContent) + value;
-    scoreElement.textContent = score;
+    const playerScoreElement = document.querySelector("#player-score");
+    const challengerScoreElement = document.querySelector("#challenger-score");
+
+    if (!playerScoreElement || !challengerScoreElement) {
+        console.error("Score elements not found");
+        return;
+    }
+
+    let [currentPlayerScore, currentChallengerScore] = challengerScoreElement.textContent.split(" vs ").map(Number);
+
+    if (isNaN(currentPlayerScore) || isNaN(currentChallengerScore)) {
+        console.error("Invalid score format");
+        return;
+    }
+
+    if (isPlayer) {
+        currentPlayerScore += value;
+    } else {
+        currentChallengerScore += value;
+    }
+
+    playerScoreElement.textContent = currentPlayerScore; // Update player score element
+    challengerScoreElement.textContent = `${currentPlayerScore} vs ${currentChallengerScore}`; // Update challenger score element
+
     console.log(`${isPlayer ? "Player" : "Challenger"} drew a card: ${value}`);
-    console.log(`${isPlayer ? "Player's" : "Challenger's"} new score: ${score}`);
+    console.log(`New score: ${currentPlayerScore} vs ${currentChallengerScore}`);
 }
 function gameEnd() {
     return new Promise((resolve, reject) => {

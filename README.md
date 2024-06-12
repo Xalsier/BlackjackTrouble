@@ -6,8 +6,9 @@ It's mostly broken. I may return to this at some point.
 ## Roadmap
 
 - Repair the images on the cards (Done)
-- Proper positioning for the challenger character
-- Optional animation for challenger character
+- Proper positioning for the challenger character (Done?)
+- Optional animation for challenger character (Done)
+- Extra animation for the challenger character
 - 1 Adversarial Minigame that isn't genuinely painful.
 
 ## Playtime
