@@ -20,3 +20,4 @@ Goal: Extend it to be longer, with dialog, animations, etc.
 ## Credits
 
 Artist for the Cards: [@digital_xrain](https://www.fiverr.com/digital_xrain) on Fiverr, 2022.
+Artist for Debug Idle Animation: [@Xalsier](https://x.com/Xalsier), 2024
